@@ -99,6 +99,15 @@ export default {
     networkTag: {
       type: String,
       default: 'span'
+    },
+
+    /**
+     * NetworkList.
+     * Default to empty array
+     */
+    networkList: {
+      type: Array,
+      default: []
     }
   },
 
@@ -152,7 +161,7 @@ export default {
     /**
      * Shares URL in specified network.
      *
-     * @param string network Social network key.
+     * @param Array network Social network key.
      */
     share (network) {
       this.openSharer(network, this.createSharingUrl(network));
@@ -240,5 +249,18 @@ export default {
    */
   components: {
     'network': SocialSharingNetwork
+  },
+  render () {
+    // <div><network v-for="network in networkList" :network="network"><slot :name="network">{{network}} slot</slot></network></div>
+    var _vm = this;
+    var _h = _vm.$createElement;
+    var _c = _vm._self._c || _h;
+    return _c('div', _vm._l((_vm.networkList), function(network) {
+      return _c('network', {
+        attrs: {
+          "network": network
+        }
+      }, [_vm._t(network, [_vm._v(_vm._s(network) + " slot")])], 2)
+    }))
   }
 };
